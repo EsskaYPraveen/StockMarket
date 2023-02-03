@@ -1,0 +1,55 @@
+# Research Paper
+https://github.com/scorpionhiccup/StockPricePrediction
+
+https://github.com/gudbrandtandberg/CPSC540Project
+
+# LSTM
+https://github.com/Viknesh-Rajaramon/Stock-Price-Forecasting/blob/main/Code.py
+
+train_ar = train_data['Open'].values
+test_ar = test_data['Open'].values
+
+# https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/
+history = [x for x in train_ar]
+print(type(history))
+predictions = list()
+for t in range(len(test_ar)):
+    model = ARIMA(history, order=(5,1,0))
+    model_fit = model.fit(disp=0)
+    output = model_fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    obs = test_ar[t]
+    history.append(obs)
+    #print('predicted=%f, expected=%f' % (yhat, obs))
+error = mean_squared_error(test_ar, predictions)
+print('Testing Mean Squared Error: %.3f' % error)
+error2 = smape_kun(test_ar, predictions)
+print('Symmetric mean absolute percentage error: %.3f' % error2)
+
+
+plt.figure(figsize=(12,7))
+plt.plot(df['Open'], 'green', color='blue', label='Training Data')
+plt.plot(test_data.index, predictions, color='green', marker='o', linestyle='dashed', 
+         label='Predicted Price')
+plt.plot(test_data.index, test_data['Open'], color='red', label='Actual Price')
+plt.title('Microsoft Prices Prediction')
+plt.xlabel('Dates')
+plt.ylabel('Prices')
+plt.xticks(np.arange(0,7982, 1300), df['Date'][0:7982:1300])
+plt.legend()
+
+LSTM
+
+https://www.kaggle.com/code/bryanb/stock-prices-forecasting-with-lstm
+
+https://www.kaggle.com/code/aayushkubba/time-series-stock-price-predictions
+
+
+Error Size comparisons
+
+https://link.springer.com/article/10.1007/s42979-021-00970-5
+pandu gadu@68800
+
+https://www.sciencedirect.com/science/article/pii/S0031320320304209
+

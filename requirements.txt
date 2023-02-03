@@ -1,0 +1,9 @@
+pandas
+pandas_datareader
+numpy
+matplotlib
+seaborn
+statsmodels
+jinja2
+pmdarima
+tensorflow
